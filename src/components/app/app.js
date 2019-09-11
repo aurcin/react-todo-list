@@ -2,8 +2,7 @@ import React from 'react';
 
 import TodoList from '../todo-list/todo-list';
 import AppHeader from '../app-header/app-header';
-import SearchPanel from '../search-panel/search-panel';
-import ItemStatusFilter from '../item-status-filter/item-status-filter';
+import SearchBar from '../search-bar/search-bar'
 
 const App = () => {
   const todoData = [
@@ -27,8 +26,7 @@ const App = () => {
   return (
     <>
       <AppHeader />
-      <SearchPanel />
-      <ItemStatusFilter />
+      <SearchBar />
       <TodoList todos={ todoData } />
     </>
   );

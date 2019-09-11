@@ -1,9 +1,15 @@
 input {
+  flex-grow: 1;
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--color-main-1);
 
-  margin: .5em .5em .1em .5em;
   padding: .2em;
-  width: calc(100% - 1em);
+  margin-bottom: .2em;
+}
+
+@media (min-width:30em) {
+  input{
+    margin: 0 .1em;
+  }
 }

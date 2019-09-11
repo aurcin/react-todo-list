@@ -13,3 +13,9 @@ header h1 {
 .date, .progress {
   display: none;
 }
+
+@media (min-width: 48em){
+  header {
+    padding: 2em;
+  }
+}
