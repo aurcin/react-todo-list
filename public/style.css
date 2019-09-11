@@ -1,0 +1,30 @@
+:root {
+  box-sizing: border-box;
+  font-size: calc(1vw + .6em);
+
+  --color-main-1: #3a76c4;
+  --color-main-2: #c7503b;
+  --color-main-2-dark: #ad6356;
+  --color-main-3: #58c43a;
+}
+
+@media (min-width: 48em) {
+  :root {
+    font-size: 1.125em;
+  }
+ }
+
+ * {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+}

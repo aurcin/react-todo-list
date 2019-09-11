@@ -1,0 +1,28 @@
+.red-text {
+  color: red;
+}
+
+.task {
+  font-size: 1.2rem;
+  display: flex;
+  padding: .5em;
+}
+
+.task-text {
+  flex-grow: 1;
+}
+.task .btn {
+  margin: auto;
+  padding: .3em;
+}
+.task .btn:hover {
+  cursor: pointer;
+}
+
+.task .delete {
+  color: var(--color-main-2);
+}
+
+.task .important {
+  color: var(--color-main-3);
+}

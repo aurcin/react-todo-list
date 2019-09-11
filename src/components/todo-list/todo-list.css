@@ -1,0 +1,7 @@
+ul {
+  margin: .75em;
+}
+
+li + li {
+  border-top: 1px solid #3a3a3a2d;
+}
