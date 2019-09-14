@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './item-status-filter.css';
 
-const ItemStatusFilter = () => {
+export default class ItemStatusFilter extends Component {
   
-  return (
-    <div className="status-filter">
-      <div className="btn">All</div>
-      <div className="btn">Active</div>
-      <div className="btn">Done</div>
-    </div>
-  );
+  render() {
+    return (
+      <div className="status-filter">
+        <div className="btn">All</div>
+        <div className="btn">Active</div>
+        <div className="btn">Done</div>
+      </div>
+    );
+  }
 };
-
-export default ItemStatusFilter;

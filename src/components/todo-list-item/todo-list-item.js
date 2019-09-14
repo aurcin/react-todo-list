@@ -1,20 +1,22 @@
-import React from 'react';
+import React,  { Component } from 'react';
 
 import './todo-list-item.css';
 
-const TodoListItem = ({ task, important = false }) => {
-  const className = important ? 'red-text' : '';
+export default class TodoListItem extends Component {
 
-  return (
-    <div className="task">
-      <div className={'task-text ' + className }>
-        { task }
+  render() {
+
+    const { task, important = false } = this.props;
+    const className = important ? 'red-text' : '';
+
+    return (
+      <div className="task">
+        <div className={'task-text ' + className }>
+          { task }
+        </div>
+        <i className="btn important fas fa-exclamation-circle"></i>
+        <i className="btn delete fas fa-trash-alt"></i>
       </div>
-      <i className="btn important fas fa-exclamation-circle"></i>
-      <i className="btn delete fas fa-trash-alt"></i>
-    </div>
-  );
-};
-
-export default TodoListItem;
-
+    );
+  }
+}
