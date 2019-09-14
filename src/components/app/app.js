@@ -7,23 +7,34 @@ import AddTaskPanel from '../add-task-panel/add-task-panel';
 
 export default class App extends Component {
 
-  nextId = 100;
+  nextId = 0;
 
   state = {
     todoData: [
-      { 
-        id: 1,
-        task: 'Task 1111111111111111111111 1111111111111111111111111 5555 444444444 aaaaaaa', 
-      },
-      { 
-        id: 2,
-        task: 'Task 2', 
-      },
-      { 
-        id: 3,
-        task: 'Task 3', 
-      }
-    ],
+     this.createTask('Task one'),
+     this.createTask('Task two', true),
+     this.createTask('Task three'),
+    ]
+  };
+
+  createTask(taskText, important=false) {
+    return {
+      id: this.nextId++,
+      task: taskText,
+      important,
+      completed: false,
+    };
+  };
+
+  toggleProperty(arr, id, propertyName) {
+    const taskIndex = arr.findIndex( el => el.id === id);
+    const clickedTask = {...arr[taskIndex]};
+    clickedTask[propertyName] = !clickedTask[propertyName];
+    return [
+          ...arr.slice(0, taskIndex),
+          clickedTask,
+          ...arr.slice(taskIndex + 1),
+        ];
   };
 
   onDeleteTaskClick = (id) => {
@@ -36,26 +47,45 @@ export default class App extends Component {
   };
 
   onAddTaskClick = (taskText) => {
+    const newTask = this.createTask(taskText);
     this.setState(({todoData}) => {
-      const newTask = {
-        id: this.nextId++,
-        task: taskText,
-      };
-
       return {
         todoData: [...todoData, newTask],
       };
     });
   };
+
+  onMarkImportantClick = (id) => {
+    this.setState( ({todoData}) => {
+      return({
+        todoData: this.toggleProperty(todoData, id, 'important')
+      });
+    });
+  };
+
+  onMarkDoneClick= (id) => {
+    this.setState( ({todoData}) => {
+      return({
+        todoData: this.toggleProperty(todoData, id, 'completed')
+      });
+    });
+  };
   
   render() {
+
+    const { todoData } = this.state;
+    const taskDoneCount = todoData.filter( task => task.completed).length;
+    const taskLeftCount = todoData.length - taskDoneCount;
+    
     return (
       <>
-        <AppHeader />
+        <AppHeader done={ taskDoneCount } left={ taskLeftCount } />
         <SearchBar />
         <TodoList 
-          todos={ this.state.todoData }
+          todos={ todoData }
           onDeleteClick={ this.onDeleteTaskClick }
+          onImportantClick={ this.onMarkImportantClick }
+          onDoneClick={ this.onMarkDoneClick }
         />
         <AddTaskPanel onAddClick={ this.onAddTaskClick } />
       </>

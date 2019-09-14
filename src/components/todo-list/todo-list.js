@@ -3,7 +3,7 @@ import React from 'react';
 import './todo-list.css';
 import TodoListItem from '../todo-list-item/todo-list-item';
 
-const TodoList = ({ todos, onDeleteClick }) => {
+const TodoList = ({ todos, onDeleteClick, onImportantClick, onDoneClick }) => {
   
   const list = todos.map( element =>  {
     const { id, ...restElementProps } = element;
@@ -11,9 +11,9 @@ const TodoList = ({ todos, onDeleteClick }) => {
       <li key={ id }> 
         <TodoListItem     
           { ...restElementProps }
-          onDeleteClick={ () => {
-            onDeleteClick(id)
-          }}
+          onDeleteClick={ () => onDeleteClick(id) }
+          onImportantClick={ () => onImportantClick(id) }
+          onDoneClick={ ()=>  onDoneClick(id) }
         /> 
       </li>
       );
