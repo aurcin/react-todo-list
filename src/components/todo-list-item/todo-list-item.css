@@ -1,5 +1,9 @@
+.done {
+  text-decoration-line: line-through;
+}
 .red-text {
-  color: red;
+  color: var(--color-main-2);
+  font-weight: bold;
 }
 
 .task {

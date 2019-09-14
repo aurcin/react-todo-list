@@ -1,35 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import TodoList from '../todo-list/todo-list';
 import AppHeader from '../app-header/app-header';
 import SearchBar from '../search-bar/search-bar'
 
-const App = () => {
-  const todoData = [
-    { 
-      id: 1,
-      task: 'Task 1111111111111111111111 1111111111111111111111111 5555 444444444 aaaaaaa', 
-      important: false,
-    },
-    { 
-      id: 2,
-      task: 'Task 2', 
-      important: true,
-    },
-    { 
-      id: 3,
-      task: 'Task 3', 
-      important: false,
-    }
-  ];
+export default class App extends Component {
 
-  return (
-    <>
-      <AppHeader />
-      <SearchBar />
-      <TodoList todos={ todoData } />
-    </>
-  );
-} 
+  state = {
+    todoData: [
+      { 
+        id: 1,
+        task: 'Task 1111111111111111111111 1111111111111111111111111 5555 444444444 aaaaaaa', 
+      },
+      { 
+        id: 2,
+        task: 'Task 2', 
+      },
+      { 
+        id: 3,
+        task: 'Task 3', 
+      }
+    ],
+  }
 
-export default App;
+  onDeleteClick = (id) => {
+    this.setState(({todoData})=> {
+      const newList = todoData.filter( el => el.id !== id);
+      return {
+        todoData: newList,
+      };
+    });
+  };
+  
+  render() {
+    return (
+      <>
+        <AppHeader />
+        <SearchBar />
+        <TodoList 
+          todos={ this.state.todoData }
+          onDeleteClick={ this.onDeleteClick }
+        />
+      </>
+    );
+  };
+};
