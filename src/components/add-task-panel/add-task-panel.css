@@ -1,0 +1,27 @@
+.addPanel {
+  margin: .75em;
+}
+
+@media (min-width:48em){
+  .addPanel{
+    width: 768px;
+    margin: 1em auto;
+  }
+}
+
+.addButton {
+  display: inline-block;
+  margin: .5em;
+  padding: .7em;
+  color: var(--color-main-1);
+  border: 1px solid var(--color-main-1);
+  border-radius: .5em;
+  transition-property: color, background-color;
+  transition-duration: .5s;
+}
+
+.addButton:hover {
+  color: white;
+  background-color: var(--color-main-1);
+  cursor: pointer;
+}
