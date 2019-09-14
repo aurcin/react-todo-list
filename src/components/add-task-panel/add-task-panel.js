@@ -1,15 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './add-task-panel.css';
 
-const AddTaskPanel = ( {onAddClick}) => {
-  return (
-    <div className='addPanel'>
-      <div className='addButton' onClick={ () => onAddClick('New added task')}>
-        <i className="fas fa-file"></i>
-      </div>
-    </div>
-  );
-};
+export default class AddTaskPanel extends Component {
 
-export default AddTaskPanel;
+  state = {
+    label: '',
+  };
+
+  onAddTaskInputChange = (event) => {
+    this.setState({
+      label: event.target.value,
+    });
+  };
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    this.props.onAddClick(this.state.label);
+    this.setState({
+      label: '',
+    });
+  };
+
+  render() {
+    return (
+      <form 
+        className='addPanel'
+        onSubmit={ this.onSubmit}
+      >
+        <input
+          type='text'
+          placeholder='Add task'
+          onChange={ this.onAddTaskInputChange }
+          value={ this.state.label}
+        />
+        <div className='addButton' onClick={ this.onSubmit }>
+          <i className='fas fa-file'></i>
+        </div>
+      </form>
+  );
+  };
+};
