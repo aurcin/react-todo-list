@@ -1,6 +1,11 @@
 .done {
   text-decoration-line: line-through;
 }
+
+.task-done {
+  background-color: rgb(241, 241, 241);
+}
+
 .red-text {
   color: var(--color-main-2);
   font-weight: bold;
@@ -19,6 +24,9 @@
 .task .btn {
   margin: auto;
   padding: .3em;
+  border-radius: .5em;
+  transition-property: background-color color;
+  transition-duration: .5s;
 }
 .task .btn:hover {
   cursor: pointer;
@@ -28,6 +36,17 @@
   color: var(--color-main-2);
 }
 
+.task .delete:hover {
+  color: white;
+  background-color: var(--color-main-2);
+}
+
 .task .important {
   color: var(--color-main-3);
 }
+
+.task .important:hover {
+  color: white;
+  background-color: var(--color-main-3);
+}
+

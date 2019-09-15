@@ -6,15 +6,17 @@ const TodoListItem = (props) => {
   const { task, completed, important, onDeleteClick, onImportantClick, onDoneClick } = props;  
   
   let classNames = 'task-text';
+  let taskClassNames = 'task';
   if (completed) {
     classNames += ' done';
+    taskClassNames += ' task-done';
   };
   if (important) {
     classNames +=' red-text'
   };
 
   return (
-     <div className="task">
+     <div className={ taskClassNames }>
       <div
         className={ classNames }
         onClick={ onDoneClick }
