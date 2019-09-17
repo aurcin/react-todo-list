@@ -5,10 +5,12 @@
 }
 
 .status-filter .btn{
-  flex: 1;
   padding: .5em;
+  margin: .5em 0;
   text-align: center;
   color:white;
+  width: 4em;
+  line-height: 2em;
 }
 
 .btn-active {
@@ -32,9 +34,3 @@
   border-left: 2px solid white;
 }
 
-@media (min-width: 30em){
-  .status-filter .btn{
-    width: 4em;
-    line-height: 2em;
-  }
-}

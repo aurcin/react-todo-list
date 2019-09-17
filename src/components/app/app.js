@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 
 import TodoList from '../todo-list/todo-list';
 import AppHeader from '../app-header/app-header';
-import SearchBar from '../search-bar/search-bar';
-import AddTaskPanel from '../add-task-panel/add-task-panel';
+import Menu from '../app-menu/app-menu';
 
 export default class App extends Component {
 
@@ -16,7 +15,7 @@ export default class App extends Component {
      this.createTask('Task three'),
     ],
     filterKeyword: '',
-    filterToggleValue: 'done',
+    filterToggleValue: 'all',
   };
 
   createTask(taskText, important=false) {
@@ -49,6 +48,10 @@ export default class App extends Component {
   };
 
   onAddTaskClick = (taskText) => {
+    if (taskText ===''){
+      return;
+    };
+
     const newTask = this.createTask(taskText);
     this.setState(({todoData}) => {
       return {
@@ -113,9 +116,10 @@ export default class App extends Component {
     return (
       <>
         <AppHeader done={ taskDoneCount } left={ taskLeftCount } />
-        <SearchBar changeFilterKeyword={ this.changeFilterKeyword }
+        <Menu changeFilterKeyword={ this.changeFilterKeyword }
           changeFilterToggle={ this.changeFilterToggle }
           filterToggle={ this.state.filterToggleValue}
+          onAddClick={ this.onAddTaskClick }
         />
         <TodoList 
           todos={ filteredTasks }
@@ -123,7 +127,6 @@ export default class App extends Component {
           onImportantClick={ this.onMarkImportantClick }
           onDoneClick={ this.onMarkDoneClick }
         />
-        <AddTaskPanel onAddClick={ this.onAddTaskClick } />
       </>
     );
   };

@@ -35,7 +35,7 @@ export default class AddTaskPanel extends Component {
           value={ this.state.label}
         />
         <div className='addButton' onClick={ this.onSubmit }>
-          <i className='far fa-calendar-plus'></i>
+          <i className='fas fa-plus'></i>
         </div>
       </form>
   );

@@ -1,0 +1,41 @@
+.menu {
+  margin: 0 .75em;
+}
+
+.menu-top{
+  display: flex;
+  justify-content: center;
+  height: 2em;
+}
+
+.menu-top-left {
+  width: 2em;
+  background-image: linear-gradient(60deg, white 1.5em, var(--color-main-1) calc(1.5em + 1px));
+}
+
+.menu-top-middle{
+  background-color: var(--color-main-1);
+  color: white;
+  padding-bottom: .2em;
+}
+
+.menu-top-middle i + i {
+  margin-left: .2em;
+}
+
+.menu-top-middle i:hover{
+  color: var(--color-main-1);
+  background-color: white;
+}
+
+.menu-top-right {
+  width:2em;
+  background-image: linear-gradient(-60deg, white 1.5em, var(--color-main-1) calc(1.5em + 1px));
+}
+
+@media (min-width:48em){
+  .menu{
+    width: 768px;
+    margin: 0 auto;
+  }
+}

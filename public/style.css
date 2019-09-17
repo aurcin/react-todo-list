@@ -28,3 +28,14 @@
 body {
   font-family: 'Roboto', Arial, sans-serif;
 }
+
+i {
+  padding: .3em;
+  border-radius: .5em;
+  transition-property: background-color color;
+  transition-duration: .5s;
+}
+
+i:hover{
+  cursor: pointer;
+}

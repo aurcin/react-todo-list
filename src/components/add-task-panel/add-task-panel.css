@@ -1,27 +1,26 @@
 .addPanel {
-  margin: .75em;
-}
-
-@media (min-width:48em){
-  .addPanel{
-    width: 768px;
-    margin: 1em auto;
-  }
+  display: flex;
 }
 
 .addButton {
-  display: inline-block;
-  margin: .5em;
-  padding: .7em;
-  color: var(--color-main-1);
-  border: 1px solid var(--color-main-1);
-  border-radius: .5em;
-  transition-property: color, background-color;
-  transition-duration: .5s;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  margin-top: .8em;
+  color: var(--color-main-3);
+  border: 1px solid rgb(172, 172, 172);
+  border-radius: 0 .5em .5em 0;
+}
+
+.addPanel input {
+  height: 2.5rem;
+}
+
+.addButton i{
+  padding: .5em;
 }
 
 .addButton:hover {
   color: white;
-  background-color: var(--color-main-1);
+  background-color: rgb(172, 172, 172);
   cursor: pointer;
 }
