@@ -9,12 +9,23 @@
   padding: .5em;
   text-align: center;
   color:white;
+}
+
+.btn-active {
+  background-color: tomato;
+}
+
+.btn-regular {
   background-color: var(--color-main-2);
 }
 
 .status-filter .btn:hover{
   background-color: var(--color-main-2-dark);
   cursor: pointer;
+}
+
+.status-filter .btn-active:hover{
+  background-color: tomato;
 }
 
 .btn + .btn {

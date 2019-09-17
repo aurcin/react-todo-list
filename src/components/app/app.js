@@ -14,7 +14,9 @@ export default class App extends Component {
      this.createTask('Task one'),
      this.createTask('Task two', true),
      this.createTask('Task three'),
-    ]
+    ],
+    filterKeyword: '',
+    filterToggleValue: 'done',
   };
 
   createTask(taskText, important=false) {
@@ -63,26 +65,60 @@ export default class App extends Component {
     });
   };
 
-  onMarkDoneClick= (id) => {
+  onMarkDoneClick = (id) => {
     this.setState( ({todoData}) => {
       return({
         todoData: this.toggleProperty(todoData, id, 'completed')
       });
     });
   };
+
+  search = (items, keyword) => {
+    if (keyword.length === 0 ){
+      return items;
+    };
+
+    return items.filter( item => item.task.toLowerCase().indexOf(keyword.toLowerCase()) !== -1);
+  };
+
+  filterByStatus = (items, status) => {
+    switch(status) {
+      case 'all': return items;
+      case 'active': return items.filter(item => !item.completed);
+      case 'done': return items.filter(item => item.completed);
+      default: return items;
+    };
+  };
+
+  changeFilterKeyword = (keyword) => {
+    this.setState({
+      filterKeyword: keyword,
+    });
+  };
+
+  changeFilterToggle = (value) => {
+    this.setState({
+      filterToggleValue: value,
+    });
+  };
   
   render() {
 
-    const { todoData } = this.state;
+    const { todoData, filterKeyword } = this.state;
     const taskDoneCount = todoData.filter( task => task.completed).length;
     const taskLeftCount = todoData.length - taskDoneCount;
+
+    const filteredTasks = this.search(this.filterByStatus(todoData, this.state.filterToggleValue), filterKeyword);
     
     return (
       <>
         <AppHeader done={ taskDoneCount } left={ taskLeftCount } />
-        <SearchBar />
+        <SearchBar changeFilterKeyword={ this.changeFilterKeyword }
+          changeFilterToggle={ this.changeFilterToggle }
+          filterToggle={ this.state.filterToggleValue}
+        />
         <TodoList 
-          todos={ todoData }
+          todos={ filteredTasks }
           onDeleteClick={ this.onDeleteTaskClick }
           onImportantClick={ this.onMarkImportantClick }
           onDoneClick={ this.onMarkDoneClick }
