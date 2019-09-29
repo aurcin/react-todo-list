@@ -3,7 +3,7 @@ import React from 'react';
 import './todo-list-item.css';
 
 const TodoListItem = (props) => {
-  const { task, completed, important, onDeleteClick, onImportantClick, onDoneClick } = props;  
+  const { task, completed, important, onDeleteClick, onImportantClick, onDoneClick, onEditClick } = props;  
   
   let classNames = 'task-text';
   let taskClassNames = 'task';
@@ -23,8 +23,9 @@ const TodoListItem = (props) => {
       >
         { task }
       </div>
+      <i className="btn edit fas fa-edit" onClick={ onEditClick }></i>
       <i className="btn important fas fa-exclamation-circle" onClick={ onImportantClick }></i>
-      <i className="btn delete fas fa-trash-alt" onClick={ onDeleteClick}></i>
+      <i className="btn delete fas fa-trash-alt" onClick={ onDeleteClick }></i>
     </div>
   );
 };

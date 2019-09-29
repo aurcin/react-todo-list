@@ -44,3 +44,12 @@
   background-color: var(--color-main-3);
 }
 
+.task .edit {
+  color: var(--color-main-1);
+}
+
+.task .edit:hover {
+  color: white;
+  background-color: var(--color-main-1);
+}
+

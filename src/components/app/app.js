@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import TodoList from '../todo-list/todo-list';
 import AppHeader from '../app-header/app-header';
 import Menu from '../app-menu/app-menu';
+import EditTaskWindow from '../edit-task-window/edit-task-window';
 
 export default class App extends Component {
 
@@ -16,6 +17,9 @@ export default class App extends Component {
     ],
     filterKeyword: '',
     filterToggleValue: 'all',
+    editWindowOpen: false,
+    editTaskId: null,
+    editTaskLabel: '',
   };
 
   createTask(taskText, important=false) {
@@ -56,6 +60,28 @@ export default class App extends Component {
     this.setState(({todoData}) => {
       return {
         todoData: [...todoData, newTask],
+      };
+    });
+  };
+
+  onEditTaskClick = (id) => {
+    const editLabel = this.state.todoData.filter(el => el.id === id)[0].task;
+    this.setState({
+      editTaskId:id,
+      editWindowOpen: true,
+      editTaskLabel: editLabel,
+    });
+  };
+
+  changeTask = (text) => {
+    this.setState(({todoData, editTaskId}) => {
+      const index = todoData
+        .map(el => el.id)
+        .indexOf(editTaskId);
+        todoData[index].task = text;
+      return {
+        editWindowOpen: false,
+        todoData,
       };
     });
   };
@@ -104,10 +130,16 @@ export default class App extends Component {
       filterToggleValue: value,
     });
   };
+
+  closeEditWindow = () => {
+    this.setState({
+      editWindowOpen: false,
+    });
+  };
   
   render() {
 
-    const { todoData, filterKeyword } = this.state;
+    const { todoData, filterKeyword, editWindowOpen, editTaskLabel } = this.state;
     const taskDoneCount = todoData.filter( task => task.completed).length;
     const taskLeftCount = todoData.length - taskDoneCount;
 
@@ -126,7 +158,9 @@ export default class App extends Component {
           onDeleteClick={ this.onDeleteTaskClick }
           onImportantClick={ this.onMarkImportantClick }
           onDoneClick={ this.onMarkDoneClick }
+          onEditClick={ this.onEditTaskClick }
         />
+        <EditTaskWindow shown={ editWindowOpen } label={ editTaskLabel } edit= { this.changeTask } close={ this.closeEditWindow }/>
       </>
     );
   };
