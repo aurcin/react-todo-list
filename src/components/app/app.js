@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Service from '../../services/to-do-service';
 import TodoList from '../todo-list/todo-list';
 import AppHeader from '../app-header/app-header';
 import Menu from '../app-menu/app-menu';
@@ -7,14 +8,10 @@ import EditTaskWindow from '../edit-task-window/edit-task-window';
 
 export default class App extends Component {
 
-  nextId = 0;
+  service = new Service();
 
   state = {
-    todoData: [
-     this.createTask('Task one'),
-     this.createTask('Task two', true),
-     this.createTask('Task three'),
-    ],
+    todoData: [],
     filterKeyword: '',
     filterToggleValue: 'all',
     editWindowOpen: false,
@@ -22,14 +19,14 @@ export default class App extends Component {
     editTaskLabel: '',
   };
 
-  createTask(taskText, important=false) {
-    return {
-      id: this.nextId++,
-      task: taskText,
-      important,
-      completed: false,
-    };
-  };
+  componentDidMount(){
+    this.service.addTask(this.service.createTask('Task one'));
+    this.service.addTask(this.service.createTask('Task two', true));
+    this.service.addTask(this.service.createTask('Task three'));
+    this.setState({
+      todoData: this.service.data,
+    })
+  }
 
   toggleProperty(arr, id, propertyName) {
     const taskIndex = arr.findIndex( el => el.id === id);

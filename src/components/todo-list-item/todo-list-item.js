@@ -23,9 +23,9 @@ const TodoListItem = (props) => {
       >
         { task }
       </div>
-      <i className="btn edit fas fa-edit" onClick={ onEditClick }></i>
-      <i className="btn important fas fa-exclamation-circle" onClick={ onImportantClick }></i>
-      <i className="btn delete fas fa-trash-alt" onClick={ onDeleteClick }></i>
+      <i className="btn edit fas fa-edit" onClick={ onEditClick } title="Edit task" ></i>
+      <i className="btn important fas fa-exclamation-circle" onClick={ onImportantClick } title="Toggle important"></i>
+      <i className="btn delete fas fa-trash-alt" onClick={ onDeleteClick } title="Delete task"></i>
     </div>
   );
 };
