@@ -1,12 +1,16 @@
 const express = require('express');
 
-const config = require('./config');
+const config = require('./config/config');
+const errorHandler = require('./middleware/error');
+const todoRoutes = require('./routes/todo');
+const connectDB = require('./config/db');
+
 const { PORT, NODE_ENV, HOST } = config;
-// require('dotenv').config();
-
 const app = express();
+connectDB();
 
-// const PORT = process.env.PORT || 5000;
+// body parsing
+app.use(express.json());
 
 // CORS related issues handle
 app.use((req, res, next) => {
@@ -18,10 +22,15 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.send('Welcome to express');
+app.use('/api/v1/todo', todoRoutes);
+
+app.use(errorHandler);
+
+const server = app.listen(PORT, HOST, () => {
+  console.log(`App listening on http://${HOST}:${PORT} in ${NODE_ENV} mode`);
 });
 
-app.listen(PORT, HOST, () => {
-  console.log(`App listening on http://${HOST}:${PORT} in ${NODE_ENV} mode`);
+process.on('unhandledRejection', (err, promise) => {
+  console.log(`Error: ${err.message}`);
+  server.close(() => process.exit(1));
 });
