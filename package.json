@@ -1,0 +1,19 @@
+{
+  "name": "todo-list-example",
+  "version": "1.0.0",
+  "description": "Simple example of todo list created using MERN stack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aurcin/react-todo-list.git"
+  },
+  "author": "Aurimas Cincikas",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}
