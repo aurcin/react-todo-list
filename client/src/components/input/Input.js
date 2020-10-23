@@ -25,14 +25,22 @@ const Input = ({ appendList }) => {
   };
 
   return (
-    <div className='input__container'>
-      <input
-        className='input__field'
-        type='text'
-        onChange={handleChange}
-        value={task}
-      />
-      <button className='input__submit-btn' onClick={addTask}></button>
+    <div className='input'>
+      <div className='input__container'>
+        <input
+          className='input__field'
+          type='text'
+          onChange={handleChange}
+          value={task}
+        />
+        <button
+          className='input__submit-btn'
+          onClick={addTask}
+          title='Add new task'
+        >
+          Add task
+        </button>
+      </div>
     </div>
   );
 };

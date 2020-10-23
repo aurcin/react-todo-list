@@ -1,17 +1,27 @@
 import React from 'react';
 
-const List = ({ todos }) => {
-  return (
-    <ul className='todos__list'>
-      {todos && todos.length > 0 ? (
-        todos.map(item => {
-          return <li key={item._id}>{item.task}</li>;
-        })
-      ) : (
-        <li>Nothing to do</li>
-      )}
-    </ul>
-  );
+import ListItem from './list_item';
+import { deleteTodo } from '../../services/todo_service';
+
+const List = ({ todos, onRemove }) => {
+  const onDelete = id => {
+    deleteTodo(id)
+      .then(result => {
+        if (result.success) {
+          onRemove(id);
+        }
+      })
+      .catch(error => console.log(error));
+  };
+
+  let list = <ListItem todo={{ task: 'Noting to do' }} />;
+  if (todos && todos.length > 0) {
+    list = todos.map(item => (
+      <ListItem key={item._id} todo={item} onDelete={onDelete} />
+    ));
+  }
+
+  return <ul className='todo__list'>{list}</ul>;
 };
 
 export default List;

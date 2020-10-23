@@ -17,3 +17,12 @@ export const addTodo = async task => {
     console.error(error);
   }
 };
+
+export const deleteTodo = async id => {
+  try {
+    const result = await axios.delete(`api/v1/todo/${id}`);
+    return result.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

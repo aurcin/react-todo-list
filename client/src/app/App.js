@@ -12,6 +12,10 @@ const App = () => {
     setTodos(prev => [...prev, todo]);
   };
 
+  const onRemove = id => {
+    setTodos(prev => [...prev.filter(item => item._id !== id)]);
+  };
+
   useEffect(() => {
     getTodos().then(result => setTodos(result.data));
   }, []);
@@ -19,7 +23,7 @@ const App = () => {
   return (
     <>
       <Input appendList={appendList} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onRemove={onRemove} />
     </>
   );
 };
